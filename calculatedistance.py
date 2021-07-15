@@ -33,10 +33,11 @@ def calcdist():
     # Check location parameters.
     if location is None or type(location) != str:
         logging.warning("Location information is incomplete or sent in the wrong format.")
-        msg = {"code": "401",
+        msg = {"code": "400",
                "Description": "Error",
                "Error_message": "Location information is incomplete or sent in the wrong format."}
-        response = make_response(jsonify(msg, 401))
+        response = make_response(jsonify(msg))
+        response.status_code = 400
         response.headers["Content-Type"] = "application/json"
         return response
 
@@ -47,10 +48,11 @@ def calcdist():
     # Check result of calculation. If status is not 'OK', stop function and return error.
     if calc_dist_result["rows"][0]["elements"][0]["status"] != 'OK':
         logging.warning("Distance could not be measured.")
-        msg = {"code": "401",
+        msg = {"code": "400",
                "Description": "Error",
                "Error_message": "Distance could not be measured."}
         response = make_response(jsonify(msg))
+        response.status_code = 400
         response.headers["Content-Type"] = "application/json"
         return response
 
