@@ -1,0 +1,3 @@
+API_KEY: 'Google API Key'
+DEFAULT_LOCATION: 'Moscow Ring Road'
+SAVE_FILE_NAME: '.log'
